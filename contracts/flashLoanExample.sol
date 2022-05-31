@@ -10,7 +10,10 @@ contract FlashLoanExample is FlashLoanSimpleReceiverBase {
     using SafeMath for uint;
 
     event Log(address asset, uint val);
-
+    /**
+    * @dev Constructor 
+    * @param the address of the pool contract
+    */
     constructor(IPoolAddressesProvider provider) 
         public 
         FlashLoanSimpleReceiverBase(provider) 
