@@ -1,6 +1,6 @@
 const { expect, assert } = require("chai");
 const { BigNumber } = require("ethers");
-const { ethers, waffle, artifacts } = require("hardhat");
+const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
 const { DAI, DAI_WHALE, POOL_ADDRESS_PROVIDER } = require("../config");
@@ -34,6 +34,7 @@ describe("Deploy a Flash Loan", () => {
     const remainingBalance = await token.balanceOf(_flashLoanExample.address); // Check the balance of DAI in the Flash Loan contract afterwards
     console.log(ethers.utils.formatEther(remainingBalance))
     console.log(ethers.utils.formatEther(BALANCE_AMOUNT_DAI))
-    expect(remainingBalance.lt(BALANCE_AMOUNT_DAI)).to.be.true; // We must have less than 2000 DAI now, since the premium was paid from our contract's balance
+    assert.isBelow(remainingBalance, BALANCE_AMOUNT_DAI, 'remaining balance is strictly less than balance of DAI')
+    // expect(remainingBalance.lt(BALANCE_AMOUNT_DAI)).to.be.true; // We must have less than 2000 DAI now, since the premium was paid from our contract's balance
   });
 });
