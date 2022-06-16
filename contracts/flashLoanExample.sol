@@ -12,7 +12,6 @@ contract FlashLoanExample is FlashLoanSimpleReceiverBase {
     event Log(address asset, uint val);
  
     constructor(IPoolAddressesProvider provider) 
-        public 
         FlashLoanSimpleReceiverBase(provider) 
         
     {}
